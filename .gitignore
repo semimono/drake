@@ -1,0 +1,23 @@
+
+###########
+##  dub  ##
+###########
+.dub
+docs.json
+__dummy.html
+*.o
+*.obj
+
+
+#############
+##  build  ##
+#############
+**.exe
+**.buildpath
+
+
+###############
+##  eclipse  ##
+###############
+**.project
+**.settings
