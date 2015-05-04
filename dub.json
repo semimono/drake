@@ -3,12 +3,12 @@
 	"description": "",
 	"copyright": "Copyright © 2015, semimono",
 	"authors": ["semimono"],
+	"targetPath": "./drake/bin/",
 	"dependencies": {
-		"drake:utilities": "*",
-		"drake:scales": "*"
+		"drake:math": "*"
 	},
 	"subPackages": [
-		"utilities",
-		"scales"
+		"scales",
+		"utilities/drake/math",
 	]
 }

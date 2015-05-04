@@ -1,8 +1,0 @@
-{
-	"name": "drakenmath",
-	"description": "A minimal D application.",
-	"copyright": "Copyright © 2015, Cullen",
-	"authors": ["Cullen"],
-	"dependencies": {
-	}
-}
