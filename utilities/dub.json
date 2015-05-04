@@ -1,0 +1,8 @@
+{
+	"name": "utilities",
+	"description": "Drake base utilities.",
+	"targetType": "none",
+	"dependencies": {
+	
+	}
+}
