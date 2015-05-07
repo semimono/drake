@@ -4,7 +4,9 @@ module drake.math.vector4;
 import drake.math.vector2;
 import drake.math.vector3;
 import std.math;
+import std.range;
 import std.conv;
+import std.format;
 
 struct Vector4(T) {
 	
@@ -140,6 +142,17 @@ struct Vector4(T) {
 	
 	// output
 	string toString() const {
-		return "("~text!double(x)~", "~text!double(y)~", "~text!double(z)~", "~text!double(w)~")";
+		return "("~to!string(x)~", "~to!string(y)~", "~to!string(z)~", "~to!string(w)~")";
+	}
+	void toString(scope void delegate(const(char)[]) sink, FormatSpec!char fmt) const {
+		put(sink, "(");
+		formatValue(sink, x, fmt);
+		put(sink, ", ");
+		formatValue(sink, y, fmt);
+		put(sink, ", ");
+		formatValue(sink, z, fmt);
+		put(sink, ", ");
+		formatValue(sink, w, fmt);
+		put(sink, ")");
 	}
 }
