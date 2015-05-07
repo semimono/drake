@@ -1,5 +1,6 @@
 import std.stdio;
 import drake.math.vector3;
+import drake.math.vector2;
 
 struct V(T) {
 	
@@ -17,8 +18,7 @@ struct V(T) {
 	}
 }
 
-void main()
-{
+void main() {
 	writeln("Edit source/app.d to start your project.");
 	auto myVec = Vector3!double(1, 2, 3);
 	writeln(myVec);

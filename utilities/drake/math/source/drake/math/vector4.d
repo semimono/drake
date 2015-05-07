@@ -1,8 +1,12 @@
 
-import vector2;
-import vector3;
+module drake.math.vector4;
 
-class Vector4(T) {
+import drake.math.vector2;
+import drake.math.vector3;
+import std.math;
+import std.conv;
+
+struct Vector4(T) {
 	
 	// constants
 	static const Vector4 zero = Vector4!(T)(0, 0, 0);
@@ -17,9 +21,6 @@ class Vector4(T) {
 	T x, y, z, w;
 
 	// constructors
-	this() {
-		this(0, 0, 0);
-	}
 	this(T x, T y, T z) {
 		this(x, y, z, 1);
 	}
@@ -38,7 +39,107 @@ class Vector4(T) {
 
 
 	// methods
+	T magnitude() const {
+		return sqrt(x*x + y*y + z*z);
+	}
+	T magnitudeSquared() const {
+		return x*x + y*y + z*z;
+	}
+	Vector4!(T) normal() const {
+		T magnitude = magnitude();
+		return Vector4!(T)(x /magnitude, y /magnitude, z /magnitude);
+	}
+	void normalize() {
+		T m = magnitude();
+		x /= m; y /= m; z /= m;
+	}
+	
+	Vector4!(T) scale(T s) const {
+		return Vector4!(T)(x*s, y*s, z*s);
+	}
+	
+	T dot(const ref Vector4!(T) b) const {
+		return (x * b.x) + (y * b.y) + (z * b.z);
+	}
+	Vector4!(T) cross(const ref Vector4!(T) b) const {
+		return Vector4!(T)((y*b.z)- (z*b.y), (z*b.x)- (x*b.z), (x*b.y)- (y*b.x));
+	}
+	
 	
 	// operators
+	override Vector4!(T) opBinary(string op)(const ref Vector4!(T) other) {
+		static if (op == "+")
+			return Vector4!(T)(x +other.x, y +other.y, z +other.z);
+		else static if (op == "-")
+			return Vector4!(T)(x -other.x, y -other.y, z -other.z);
+		else static if (op == "*")
+			return Vector4!(T)(x *other.x, y *other.y, z *other.z);
+		else static if (op == "/")
+			return Vector4!(T)(x /other.x, y /other.y, z /other.z);
+		else
+			static assert(0, "Operator "~op~" not implemented");
+	}
+	override Vector4!(T) opBinary(string op)(T scalar) {
+		static if (op == "*")
+			return Vector4!(T)(x *scalar, y *scalar, z *scalar);
+		else static if (op == "/")
+			return Vector4!(T)(x /scalar, y /scalar, z /scalar);
+		else
+			static assert(0, "Operator "~op~" not implemented");
+	}
 	
+	override Vector4!(T) opUnary(string op)() const if (op == "-") {
+		return Vector4!(T)(-x, -y, -z);
+	}
+	
+	override ref Vector4!(T) opOpAssign(string op)(const ref Vector4!(T) other) {
+		static if (op == "+=") {
+			x += other.x; y += other.y; z += other.z;
+		} else static if (op == "-=") {
+			x -= other.x; y -= other.y; z -= other.z;
+		} else static if (op == "*=") {
+			x *= other.x; y *= other.y; z *= other.z;
+		} else static if (op == "/=") {
+			x /= other.x; y /= other.y; z /= other.z;
+		} else
+			static assert(0, "Operator "~op~" not implemented");
+		return this;
+	}
+	
+	override ref Vector4!(T) opOpAssign(string op)(T scalar) {
+		static if (op == "*=") {
+			x *= scalar; y *= scalar; z *= scalar;
+		} else static if (op == "/=") {
+			x /= scalar; y /= scalar; z /= scalar;
+		} else
+			static assert(0, "Operator "~op~" not implemented");
+		return this;
+	}
+	
+	bool opEquals(const ref Vector4!(T) other) {
+		return x == other.x && y == other.y && z == other.z && w == other.w;
+	}
+	
+	ref T opIndex(size_t i) {
+		switch(i) {
+			case 0: return x;
+			case 1: return y;
+			case 2: return z;
+			default: return w;
+		}
+	}
+	T opIndex(size_t i) const {
+		switch(i) {
+			case 0: return x;
+			case 1: return y;
+			case 2: return z;
+			default: return w;
+		}
+	}
+	
+	
+	// output
+	string toString() const {
+		return "("~text!double(x)~", "~text!double(y)~", "~text!double(z)~", "~text!double(w)~")";
+	}
 }
