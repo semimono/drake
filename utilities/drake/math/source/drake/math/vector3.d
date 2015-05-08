@@ -8,6 +8,8 @@ import std.range;
 import std.conv;
 import std.format;
 
+
+
 struct Vector3(T) {
 	
 	
@@ -78,7 +80,7 @@ struct Vector3(T) {
 		else static if (op == "/")
 			return Vector3!(T)(x /other.x, y /other.y, z /other.z);
 		else
-			static assert(0, "Operator "~op~" not implemented");
+			static assert(0 == "Operator "~op~" not implemented");
 	}
 	override Vector3!(T) opBinary(string op)(T scalar) {
 		static if (op == "*")
@@ -86,7 +88,7 @@ struct Vector3(T) {
 		else static if (op == "/")
 			return Vector3!(T)(x /scalar, y /scalar, z /scalar);
 		else
-			static assert(0, "Operator "~op~" not implemented");
+			static assert(0 == "Operator "~op~" not implemented");
 	}
 	
 	override Vector3!(T) opUnary(string op)() const if (op == "-") {
@@ -103,7 +105,7 @@ struct Vector3(T) {
 		} else static if (op == "/=") {
 			x /= other.x; y /= other.y; z /= other.z;
 		} else
-			static assert(0, "Operator "~op~" not implemented");
+			static assert(0 == "Operator "~op~" not implemented");
 		return this;
 	}
 	
@@ -113,7 +115,7 @@ struct Vector3(T) {
 		} else static if (op == "/=") {
 			x /= scalar; y /= scalar; z /= scalar;
 		} else
-			static assert(0, "Operator "~op~" not implemented");
+			static assert(0 == "Operator "~op~" not implemented");
 		return this;
 	}
 	
@@ -150,4 +152,82 @@ struct Vector3(T) {
 		formatValue(sink, z, fmt);
 		put(sink, ")");
 	}
+}
+
+
+//////////////////
+//  unit tests  //
+//////////////////
+
+unittest {
+	Vector3!double test = Vector3!double(1, 2, 3);
+	double x = test[0];
+	double y = test[1];
+	double z = test[2];
+	assert(x == 1);
+	assert(y == 2);
+	assert(z == 3);
+}
+
+unittest {
+	Vector3!double test = Vector3!double(2, 4, 4);
+	assert(test.magnitude() == 6);
+}
+
+unittest {
+	Vector3!double test = Vector3!double(1, 2, 3);
+	Vector3!double result = test.scale(2);
+		double x = result[0];
+		double y = result[1];
+		double z = result[2];
+		assert(2 == x);
+		assert(4 == y);
+		assert(6 == z);
+}
+
+unittest {
+	Vector3!double a = Vector3!double(1, 2, 3);
+	Vector3!double b = Vector3!double(3, 2, 1);
+	double result = a.dot(b);
+	assert(10 == result);
+}
+
+unittest {
+	Vector3!double a = Vector3!double(0, 0, 0);
+	a[0] = 1;
+	a[1] = 2;
+	a[2] = 3;
+	double x = a[0];
+	double y = a[1];
+	double z = a[2];
+	assert(1 == x);
+	assert(2 == y);
+	assert(3 == z);
+}
+
+unittest { 
+	Vector3!double a = Vector3!double(1, 2, 3);
+	Vector3!double b = Vector3!double(3, 4, 5);
+	Vector3!double result = a.cross(b);
+	double x = result[0];
+	double y = result[1];
+	double z = result[2];
+	assert(-2 == x);
+	assert(4 == y);
+	assert(-2 == z);
+}
+
+unittest {
+	Vector3!double a = Vector3!double(2, 5, 7);
+	double l = a.normal().magnitude();
+	double epsilon = .0000001;
+	assert(abs(1.0 - l) < epsilon);
+	
+	Vector3!double b = Vector3!double(.6, 0, 0);
+	Vector3!double normal = b.normal();
+	l = normal.magnitude();
+	assert(abs(1.0 - l) < epsilon);
+	assert(1.0 == normal.x);
+	assert(0 == normal.y);
+	assert(0 == normal.z);
 }
