@@ -5,10 +5,14 @@
 	"authors": ["semimono"],
 	"targetPath": "./drake/bin/",
 	"dependencies": {
-		"drake:math": "*"
+		"drake:math": "*",
+		"drake:asset-loader": "*",
+		"dlangui": "*",
 	},
 	"subPackages": [
 		"scales",
 		"utilities/drake/math",
+		"utilities/drake/world-model",
+		"utilities/drake/asset-loader",
 	]
 }

@@ -15,6 +15,8 @@ __dummy.html
 **.exe
 **.buildpath
 **.lib
+**.log
+**.dll
 
 
 ###############

@@ -1,4 +1,14 @@
 {
 	"fileVersion": 1,
-	"versions": {}
+	"versions": {
+		"gl3n": "1.0.1",
+		"dlib": "~master",
+		"derelict-ft": "1.0.2",
+		"derelict-util": "1.9.1",
+		"derelict-assimp3": "1.0.1",
+		"dlangui": "0.6.27",
+		"derelict-sdl2": "1.9.5",
+		"dsfml": "~master",
+		"derelict-gl3": "1.0.12"
+	}
 }

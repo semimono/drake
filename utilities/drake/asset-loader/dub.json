@@ -1,0 +1,10 @@
+{
+	"name": "asset-loader",
+	"description": "Basic vector-based math library.",
+	"copyright": "Copyright © 2015, semimono",
+	"authors": ["semimono"],
+	"targetType": "library",
+	"dependencies": {
+		"derelict-assimp3": "~>1.0.1",
+	}
+}
