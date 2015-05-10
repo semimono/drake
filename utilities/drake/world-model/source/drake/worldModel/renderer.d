@@ -5,19 +5,17 @@ module drake.worldModel.renderer;
 
 interface BaseRenderer {
 	
-//	void addObject(SceneObject *) {
-//		
-//	}
-//	
-//	void removeObject(SceneObject *) {
-//		
-//	}
-//	
-//	void addCamera(CameraStructure * cam) {
-//		
-//	}
+	void addObject(SceneObject object) {
+		
+	}
+	
+	void removeObject(SceneObject object) {
+		
+	}
+	
+	abstract void addCamera(CameraStructure cam);
 	
 protected:
-//	WorldModel * currentModel;
+	WorldModel world;
 };
 

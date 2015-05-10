@@ -3,5 +3,5 @@
 	"description": "Basic vector-based math library.",
 	"copyright": "Copyright © 2015, semimono",
 	"authors": ["semimono"],
-	"targetType": "library"
+	"targetType": "dynamicLibrary"
 }

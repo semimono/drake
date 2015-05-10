@@ -9,17 +9,33 @@ class SceneObject(T) {
 	void addChild(SceneObject!T c) {
 		children ~= c;
 	}
-	
 	SceneObject!T[] getChildren() {
 		return children;
 	}
-	
-	void addChild(ref SceneObject!T object) {
-		children ~= object;
+	SceneObject!T getChild(int index) {
+		return children[index];
+	}
+	int childCount() {
+		return children.length;
+	}
+	void clearChildren() {
+		children = [];
 	}
 	
-	void clearChildren() {
-		children[0];
+	void addMesh(Mesh!T m) {
+		meshes ~= m;
+	}
+	Mesh!T[] getMeshes() {
+		return meshes;
+	}
+	ref Mesh!T getMesh(int index) {
+		return meshes[index];
+	}
+	int meshCount() {
+		return meshes.length;
+	}
+	void clearMeshes() {
+		meshes = [];
 	}
 	
 protected:
