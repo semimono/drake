@@ -6,13 +6,12 @@
 	"targetPath": "./drake/bin/",
 	"dependencies": {
 		"drake:math": "*",
-		"drake:asset-loader": "*",
+		"drake:world-model": "*",
 		"dlangui": "*",
 	},
 	"subPackages": [
 		"scales",
 		"utilities/drake/math",
 		"utilities/drake/world-model",
-		"utilities/drake/asset-loader",
 	]
 }

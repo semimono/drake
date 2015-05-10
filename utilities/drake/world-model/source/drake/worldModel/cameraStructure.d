@@ -1,14 +1,12 @@
 
+module drake.worldModel.cameraStructure;
 
-#include "cameraStructure.h"
+//#ifndef M_PI
+//	#define M_PI 3.14159265358979323846
+//#endif
 
-#ifndef M_PI
-	#define M_PI 3.14159265358979323846
-#endif
 
-using namespace std;
-
-CameraStructure::CameraStructure(Vector3<double> pos, Vector3<double> dir, Vector3<double> up) : position(pos), direction(dir), up(up) {}
+//CameraStructure::CameraStructure(Vector3<double> pos, Vector3<double> dir, Vector3<double> up) : position(pos), direction(dir), up(up) {}
 
 
 //
