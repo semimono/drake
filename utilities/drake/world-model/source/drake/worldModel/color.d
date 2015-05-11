@@ -1,12 +1,16 @@
 
 module drake.worldModel.color;
 
+import std.conv;
+import std.format;
+import std.range;
+
 
 
 struct Color {
 	ubyte r, g, b;
 	
-	this(ubyte r, g, b) {
+	this(ubyte r, ubyte g, ubyte b) {
 		this.r = r;
 		this.g = g;
 		this.b = b;
@@ -19,14 +23,14 @@ struct Color {
 	
 	
 	// operators
-	ref T opIndex(size_t i) {
+	ref ubyte opIndex(size_t i) {
 		switch(i) {
 			case 0: return r;
 			case 1: return g;
 			default: return b;
 		}
 	}
-	T opIndex(size_t i) const {
+	ubyte opIndex(size_t i) const {
 		switch(i) {
 			case 0: return r;
 			case 1: return g;

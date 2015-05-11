@@ -1,21 +1,25 @@
 
 module drake.worldModel.renderer;
 
+import drake.worldModel.cameraStructure;
+import drake.worldModel.sceneObject;
+import drake.worldModel.worldModel;
 
 
-interface BaseRenderer {
+
+interface BaseRenderer(T) {
 	
-	void addObject(SceneObject object) {
+	void addObject(SceneObject!T object) {
 		
 	}
 	
-	void removeObject(SceneObject object) {
+	void removeObject(SceneObject!T object) {
 		
 	}
 	
-	abstract void addCamera(CameraStructure cam);
+	abstract void addCamera(CameraStructure!T cam);
 	
 protected:
-	WorldModel world;
+	WorldModel!T world;
 };
 

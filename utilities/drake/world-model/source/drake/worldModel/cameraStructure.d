@@ -7,7 +7,7 @@ module drake.worldModel.cameraStructure;
 
 
 
-class CameraStructure(T) {
+abstract class CameraStructure(T) {
 	
 	
 	this(Vector3!T pos, Vector3!T dir, Vector3!T up) {
